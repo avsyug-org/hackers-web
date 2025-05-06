@@ -24,7 +24,7 @@ env:
   APP_NAME: microhacker-web
 jobs:
   deploy:
-    environment: micro-hacker
+    environment: fmdemo-env
     steps:
       - name: Checkout
         uses: cloudbees-io/checkout@v1
@@ -54,7 +54,7 @@ jobs:
           name: ${{ secrets.DOCKERHUB_USER }}/hackers-web
           version: latest
           url: "${{ secrets.DOCKERHUB_USER }}/hackers-web:latest"
-          target-environment: micro-hacker
+          target-environment: fmdemo-env
       - name: Publish evidence
         uses: cloudbees-io/publish-evidence-item@v1
         with:
