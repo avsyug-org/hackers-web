@@ -20,7 +20,7 @@ on:
         type: string
         required: false
 env:
-  NAMESPACE: buglehacker-${{ inputs.environment }}
+  NAMESPACE: buglehacker
   APP_NAME: microhacker-web
 jobs:
   deploy:
@@ -38,7 +38,7 @@ jobs:
         with:
           chart-location: ${{ cloudbees.workspace }}/chart
           release-name: ${{ env.APP_NAME }}
-          namespace: ${{ env.NAMESPACE }}
+          namespace: ${{ env.NAMESPACE }}-${{ inputs.environment }}
           values: |
             image:
               repository: ${{ secrets.DOCKERHUB_USER }}/hackers-web
@@ -60,7 +60,7 @@ jobs:
         with:
           content: |-
             ## Deployed environment
-            [Dev frontend](https://${{ env.NAMESPACE }}.preview.cb-demos.io/)
+            [Dev frontend](https://${{ env.NAMESPACE }}-${{ inputs.environment }}.preview.cb-demos.io/)
 
             Running hackers-web:latest
           format: MARKDOWN
