@@ -24,7 +24,7 @@ env:
   APP_NAME: microhacker-web
 jobs:
   deploy:
-    environment: BugleTest
+    environment: ${{ inputs.environment }}
     steps:
       - name: Checkout
         uses: cloudbees-io/checkout@v1
