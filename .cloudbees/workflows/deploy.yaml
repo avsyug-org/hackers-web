@@ -43,11 +43,11 @@ jobs:
             image:
               repository: ${{ secrets.DOCKERHUB_USER }}/hackers-web
               tag: latest
-            hostname: buglehacker.preview.cb-demos.io
+            hostname: buglehacker-test.preview.cb-demos.io
             config:
               fmKey: ${{ secrets.FM_TOKEN }}
-              apiUrl: https://buglehacker-api.preview.cb-demos.io/api
-              authUrl: https://buglehacker-auth.preview.cb-demos.io
+              apiUrl: https://buglehacker-test-api.preview.cb-demos.io/api
+              authUrl: https://buglehacker-test-auth.preview.cb-demos.io
       - name: Register deployed artifact
         uses: cloudbees-io/register-deployed-artifact@v1
         with:
@@ -60,7 +60,7 @@ jobs:
         with:
           content: |-
             ## Deployed environment
-            [Dev frontend](https://${{ env.NAMESPACE }}-${{ inputs.environment }}.preview.cb-demos.io/)
+            [Dev frontend](https://buglehacker-test.preview.cb-demos.io/)
 
             Running hackers-web:latest
           format: MARKDOWN
