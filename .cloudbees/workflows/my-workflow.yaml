@@ -5,10 +5,18 @@ on:
   workflow_dispatch:
   workflow_call:
 jobs:
-  build:
+  getready:
     steps:
-      - name: Say hello
+      - name: Print
         uses: docker://golang:1.20.3-alpine3.17
         shell: sh
         run: |
-          echo "hello world"
+          echo "getting ready"
+  call_with_io2_super_long_name:
+    needs: getready
+    uses: avsyug-org/pipeline-library/.cloudbees/workflows/rw-with-io-2.yaml
+    with:
+      mystring: "hola"
+      mynumber: 1
+      mybool: false
+      mychoice: "opt1"
